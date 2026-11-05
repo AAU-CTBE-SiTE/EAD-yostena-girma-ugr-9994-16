@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Address bean -->
+    <bean id="address" class="com.craft.Address">
+        <property name="city" value="Addis"/>
+        <property name="country" value="Ethiopia"/>
+    </bean>
+
+    <!-- Subject beans -->
+    <bean id="math" class="com.craft.Subject">
+        <property name="subjectName" value="Maths 101"/>
+    </bean>
+
+    <bean id="Java" class="com.craft.Subject">
+        <property name="subjectName" value="Java EE"/>
+    </bean>
+
+    <!-- Student bean: values are passed into the constructor -->
+    <bean id="student" class="com.craft.Student" scope="singleton">
+        <constructor-arg index="0" value="101"/>
+        <constructor-arg index="1" value="John Doe"/>
+        <constructor-arg index="2" value="20"/>
+        <constructor-arg index="3" ref="address"/>
+        <constructor-arg index="4">
+            <list>
+                <ref bean="math"/>
+                <ref bean="Java"/>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>
